@@ -8,7 +8,7 @@
 
 void CodePages::ShowPage()
 {
-    ImGui::Begin("Codes"/*, &isActive, ImGuiWindowFlags_MenuBar*/);
+    ImGui::Begin("Codes", &isActive, ImGuiWindowFlags_MenuBar);
     
     //Set Page
     if(!isInit)
@@ -17,6 +17,7 @@ void CodePages::ShowPage()
         isInit = true;
     }
     
+    bool sideMode = layoutType == Side;
     //Set Menu
     if(ImGui::BeginMenuBar())
     {
@@ -26,45 +27,44 @@ void CodePages::ShowPage()
             if(ImGui::MenuItem("Open Source Fragment Shader Code", "Shift+Alt+f")){}
             ImGui::EndMenu();
         }
+        if(ImGui::BeginMenu("View Mode"))
+        {
+            if(ImGui::MenuItem(sideMode ? R"(√ Sync View)" : "Sync View", "Shift+Alt+v")){layoutType = Side;}
+            if(ImGui::MenuItem(sideMode ? "Single View" : R"(√ Single View)", "Shift+Alt+f")){layoutType = FullScreen;}
+            ImGui::EndMenu();
+        }
         ImGui::EndMenuBar();
     }
-
-    //View Mode Menu
-    ImGui::BeginColumns("View Mode", 2, ImGuiOldColumnFlags_None);
-    if(ImGui::Button("Sync View"))
-    {
-        layoutType = Side;
-        std::cout<< "Set To Side View"<<std::endl;
-    }
-    ImGui::NextColumn();
-    if(ImGui::Button("Single View"))
-    {
-        layoutType = FullScreen;
-        std::cout<< "Set To FullScreen View"<<std::endl;
-    }
-    ImGui::EndColumns();
-
+    
     //Current View Menu
-    bool sideMode = layoutType == Side;
-    ImGui::BeginColumns("Current View", sideMode ? 2 : 4, ImGuiOldColumnFlags_None);
-    if(ImGui::Button(sideMode ? "Vertex" : "Source Vertex"))
     {
-    }
-    ImGui::NextColumn();
-    if(ImGui::Button(sideMode ? "Fragment" : "Source Fragment"))
-    {
-    }
-    if(!sideMode)
-    {
-        ImGui::NextColumn();
-        if(ImGui::Button("Result Vertex"))
+        ImGui::BeginTabBar("Current View");
+        if(ImGui::TabItemButton(sideMode ? "Vertex" : "Source Vertex"))
         {
         }
-        ImGui::NextColumn();
-        if(ImGui::Button("Result Fragment"))
+        if(ImGui::TabItemButton(sideMode ? "Fragment" : "Source Fragment"))
         {
         }
+        if(!sideMode)
+        {
+            if(ImGui::TabItemButton("Result Vertex"))
+            {
+            }
+            if(ImGui::TabItemButton("Result Fragment"))
+            {
+            }
+        }
+        ImGui::EndTabBar();
     }
-    ImGui::EndColumns();
     ImGui::End();
+}
+
+void CodePages::ReadSourceText(TextCodeType type)
+{
+    switch (type)
+    {
+        case TextCodeType::Vertex:{}break;
+        case TextCodeType::Fragment:{}break;
+        default:break;
+    }
 }
