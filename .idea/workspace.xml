@@ -7,26 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0144865a-a5ce-4fb5-9976-77f947d9d4e7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/MoonflowShaderRecoverCPPVersion/MoonflowShaderRecoverCPPVersion.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/MoonflowShaderRecoverCPPVersion/MoonflowShaderRecoverCPPVersion.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonflowShaderRecoverCPPVersion/MoonflowShaderRecoverCPPVersion.h" beforeDir="false" afterPath="$PROJECT_DIR$/MoonflowShaderRecoverCPPVersion/MoonflowShaderRecoverCPPVersion.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonflowShaderRecoverCPPVersion/MoonflowShaderRecoverCPPVersion.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/MoonflowShaderRecoverCPPVersion/MoonflowShaderRecoverCPPVersion.vcxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonflowShaderRecoverCPPVersion/x64/Debug/Moonflow.f80df7be.tlog/CL.command.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/MoonflowShaderRecoverCPPVersion/x64/Debug/Moonflow.f80df7be.tlog/CL.command.1.tlog" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonflowShaderRecoverCPPVersion/x64/Debug/Moonflow.f80df7be.tlog/CL.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/MoonflowShaderRecoverCPPVersion/x64/Debug/Moonflow.f80df7be.tlog/CL.read.1.tlog" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonflowShaderRecoverCPPVersion/x64/Debug/Moonflow.f80df7be.tlog/CL.write.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/MoonflowShaderRecoverCPPVersion/x64/Debug/Moonflow.f80df7be.tlog/CL.write.1.tlog" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonflowShaderRecoverCPPVersion/x64/Debug/Moonflow.f80df7be.tlog/MoonflowShaderRecoverCPPVersion.lastbuildstate" beforeDir="false" afterPath="$PROJECT_DIR$/MoonflowShaderRecoverCPPVersion/x64/Debug/Moonflow.f80df7be.tlog/MoonflowShaderRecoverCPPVersion.lastbuildstate" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonflowShaderRecoverCPPVersion/x64/Debug/Moonflow.f80df7be.tlog/link.command.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/MoonflowShaderRecoverCPPVersion/x64/Debug/Moonflow.f80df7be.tlog/link.command.1.tlog" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonflowShaderRecoverCPPVersion/x64/Debug/Moonflow.f80df7be.tlog/link.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/MoonflowShaderRecoverCPPVersion/x64/Debug/Moonflow.f80df7be.tlog/link.read.1.tlog" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonflowShaderRecoverCPPVersion/x64/Debug/Moonflow.f80df7be.tlog/link.write.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/MoonflowShaderRecoverCPPVersion/x64/Debug/Moonflow.f80df7be.tlog/link.write.1.tlog" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonflowShaderRecoverCPPVersion/x64/Debug/Moonflow.f80df7be.tlog/rc.command.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/MoonflowShaderRecoverCPPVersion/x64/Debug/Moonflow.f80df7be.tlog/rc.command.1.tlog" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonflowShaderRecoverCPPVersion/x64/Debug/Moonflow.f80df7be.tlog/rc.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/MoonflowShaderRecoverCPPVersion/x64/Debug/Moonflow.f80df7be.tlog/rc.read.1.tlog" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonflowShaderRecoverCPPVersion/x64/Debug/Moonflow.f80df7be.tlog/rc.write.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/MoonflowShaderRecoverCPPVersion/x64/Debug/Moonflow.f80df7be.tlog/rc.write.1.tlog" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonflowShaderRecoverCPPVersion/x64/Debug/MoonflowShaderRecoverCPPVersion.exe.recipe" beforeDir="false" afterPath="$PROJECT_DIR$/MoonflowShaderRecoverCPPVersion/x64/Debug/MoonflowShaderRecoverCPPVersion.exe.recipe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonflowShaderRecoverCPPVersion/x64/Debug/MoonflowShaderRecoverCPPVersion.ilk" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonflowShaderRecoverCPPVersion/x64/Debug/MoonflowShaderRecoverCPPVersion.obj" beforeDir="false" afterPath="$PROJECT_DIR$/MoonflowShaderRecoverCPPVersion/x64/Debug/MoonflowShaderRecoverCPPVersion.obj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonflowShaderRecoverCPPVersion/x64/Debug/vc143.idb" beforeDir="false" afterPath="$PROJECT_DIR$/MoonflowShaderRecoverCPPVersion/x64/Debug/vc143.idb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MoonflowShaderRecoverCPPVersion/x64/Debug/vc143.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/MoonflowShaderRecoverCPPVersion/x64/Debug/vc143.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/x64/Debug/MoonflowShaderRecoverCPPVersion.exe" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/x64/Debug/MoonflowShaderRecoverCPPVersion.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/x64/Debug/MoonflowShaderRecoverCPPVersion.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,18 +28,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "last_opened_file_path": "D:/Project/C++/MFShaderRecoverCPP/moonflow-shader-recover-cppversion",
-    "settings.editor.selected.configurable": "IntelliLang.Configuration"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Project/C++/MFShaderRecoverCPP/moonflow-shader-recover-cppversion&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;IntelliLang.Configuration&quot;
   }
-}]]></component>
+}</component>
+  <component name="RunManager">
+    <configuration name="Unnamed" type="CMakeRunConfiguration" factoryName="Application" nameIsGenerated="true" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" EXPLICIT_BUILD_TARGET_NAME="all">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -68,6 +56,7 @@
       <option name="presentableId" value="Default" />
       <updated>1672593908383</updated>
       <workItem from="1672593910892" duration="1406000" />
+      <workItem from="1673068821060" duration="337000" />
     </task>
     <servers />
   </component>

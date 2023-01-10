@@ -48,7 +48,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_MOONFLOWSHADERRECOVERCPPVERSION));
 
     MSG msg;
-
+    CodePages code_pages;
+    
     // 主消息循环:
     while (GetMessage(&msg, nullptr, 0, 0))
     {
@@ -63,8 +64,11 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         ImGui::NewFrame();
         
         // Any application code here
-        ImGui::Text("Hello, world!");
-
+        if(code_pages.isActive)
+        {
+            code_pages.ShowPage();
+        }
+        
         // End of frame: render Dear ImGui
         ImGui::Render();
         const float clear_color_with_alpha[4] = { clear_color.x * clear_color.w, clear_color.y * clear_color.w, clear_color.z * clear_color.w, clear_color.w };
@@ -80,7 +84,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         // Swap
         g_pSwapChain->Present(1, 0);
     }
-
     return (int) msg.wParam;
 }
 
@@ -161,6 +164,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow, WNDCLASSEXW& wc)
    return TRUE;
 }
 
+extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 //
 //  函数: WndProc(HWND, UINT, WPARAM, LPARAM)
 //
@@ -173,8 +177,19 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow, WNDCLASSEXW& wc)
 //
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
+    // if (ImGui_ImplWin32_WndProcHandler(hWnd, message, wParam, lParam))
+    //     return true;
+    
     switch (message)
     {
+    case WM_SIZE:
+        if (g_pd3dDevice != NULL && wParam != SIZE_MINIMIZED)
+        {
+            CleanupRenderTarget();
+            g_pSwapChain->ResizeBuffers(0, (UINT)LOWORD(lParam), (UINT)HIWORD(lParam), DXGI_FORMAT_UNKNOWN, 0);
+            CreateRenderTarget();
+        }
+        return 0;
     case WM_COMMAND:
         {
             int wmId = LOWORD(wParam);
@@ -201,10 +216,19 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             EndPaint(hWnd, &ps);
         }
         break;
+    case WM_DPICHANGED:
+        if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_DpiEnableScaleViewports)
+        {
+            //const int dpi = HIWORD(wParam);
+            //printf("WM_DPICHANGED to %d (%.0f%%)\n", dpi, (float)dpi / 96.0f * 100.0f);
+            const RECT* suggested_rect = (RECT*)lParam;
+            ::SetWindowPos(hWnd, NULL, suggested_rect->left, suggested_rect->top, suggested_rect->right - suggested_rect->left, suggested_rect->bottom - suggested_rect->top, SWP_NOZORDER | SWP_NOACTIVATE);
+        }
     case WM_DESTROY:
         ImGui_ImplDX11_Shutdown();
         ImGui_ImplWin32_Shutdown();
         ImGui::DestroyContext();
+        CleanupDeviceD3D();
         PostQuitMessage(0);
         break;
     default:
@@ -233,47 +257,47 @@ INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
     return (INT_PTR)FALSE;
 }
 
-// void CreateRenderTarget()
-// {
-//     ID3D11Texture2D* pBackBuffer;
-//     g_pSwapChain->GetBuffer(0, IID_PPV_ARGS(&pBackBuffer));
-//     g_pd3dDevice->CreateRenderTargetView(pBackBuffer, NULL, &g_mainRenderTargetView);
-//     pBackBuffer->Release();
-// }
+void CreateRenderTarget()
+{
+    ID3D11Texture2D* pBackBuffer;
+    g_pSwapChain->GetBuffer(0, IID_PPV_ARGS(&pBackBuffer));
+    g_pd3dDevice->CreateRenderTargetView(pBackBuffer, NULL, &g_mainRenderTargetView);
+    pBackBuffer->Release();
+}
 
 // void CleanupRenderTarget()
 // {
 //     if (g_mainRenderTargetView) { g_mainRenderTargetView->Release(); g_mainRenderTargetView = NULL; }
 // }
-// bool CreateDeviceD3D(HWND hWnd)
-// {
-//     // Setup swap chain
-//     DXGI_SWAP_CHAIN_DESC sd;
-//     ZeroMemory(&sd, sizeof(sd));
-//     sd.BufferCount = 2;
-//     sd.BufferDesc.Width = 0;
-//     sd.BufferDesc.Height = 0;
-//     sd.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
-//     sd.BufferDesc.RefreshRate.Numerator = 60;
-//     sd.BufferDesc.RefreshRate.Denominator = 1;
-//     sd.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
-//     sd.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
-//     sd.OutputWindow = hWnd;
-//     sd.SampleDesc.Count = 1;
-//     sd.SampleDesc.Quality = 0;
-//     sd.Windowed = TRUE;
-//     sd.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
-//
-//     UINT createDeviceFlags = 0;
-//     //createDeviceFlags |= D3D11_CREATE_DEVICE_DEBUG;
-//     D3D_FEATURE_LEVEL featureLevel;
-//     const D3D_FEATURE_LEVEL featureLevelArray[2] = { D3D_FEATURE_LEVEL_11_0, D3D_FEATURE_LEVEL_10_0, };
-//     if (D3D11CreateDeviceAndSwapChain(NULL, D3D_DRIVER_TYPE_HARDWARE, NULL, createDeviceFlags, featureLevelArray, 2, D3D11_SDK_VERSION, &sd, &g_pSwapChain, &g_pd3dDevice, &featureLevel, &g_pd3dDeviceContext) != S_OK)
-//         return false;
-//
-//     CreateRenderTarget();
-//     return true;
-// }
+bool CreateDeviceD3D(HWND hWnd)
+{
+    // Setup swap chain
+    DXGI_SWAP_CHAIN_DESC sd;
+    ZeroMemory(&sd, sizeof(sd));
+    sd.BufferCount = 2;
+    sd.BufferDesc.Width = 0;
+    sd.BufferDesc.Height = 0;
+    sd.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+    sd.BufferDesc.RefreshRate.Numerator = 60;
+    sd.BufferDesc.RefreshRate.Denominator = 1;
+    sd.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
+    sd.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
+    sd.OutputWindow = hWnd;
+    sd.SampleDesc.Count = 1;
+    sd.SampleDesc.Quality = 0;
+    sd.Windowed = TRUE;
+    sd.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
+
+    UINT createDeviceFlags = 0;
+    //createDeviceFlags |= D3D11_CREATE_DEVICE_DEBUG;
+    D3D_FEATURE_LEVEL featureLevel;
+    const D3D_FEATURE_LEVEL featureLevelArray[2] = { D3D_FEATURE_LEVEL_11_0, D3D_FEATURE_LEVEL_10_0, };
+    if (D3D11CreateDeviceAndSwapChain(NULL, D3D_DRIVER_TYPE_HARDWARE, NULL, createDeviceFlags, featureLevelArray, 2, D3D11_SDK_VERSION, &sd, &g_pSwapChain, &g_pd3dDevice, &featureLevel, &g_pd3dDeviceContext) != S_OK)
+        return false;
+
+    CreateRenderTarget();
+    return true;
+}
 
 // void CleanupDeviceD3D()
 // {

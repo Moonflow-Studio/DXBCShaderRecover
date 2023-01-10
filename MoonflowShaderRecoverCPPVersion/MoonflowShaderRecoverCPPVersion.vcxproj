@@ -148,6 +148,7 @@
     <ClInclude Include="MoonflowShaderRecoverCPPVersion.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="UserInterface\CodePages.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="D3D\ImGuiD3DHelper.cpp">
@@ -231,6 +232,7 @@
     <ClCompile Include="imgui\imgui_tables.cpp" />
     <ClCompile Include="imgui\imgui_widgets.cpp" />
     <ClCompile Include="MoonflowShaderRecoverCPPVersion.cpp" />
+    <ClCompile Include="UserInterface\CodePages.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="MoonflowShaderRecoverCPPVersion.rc" />
