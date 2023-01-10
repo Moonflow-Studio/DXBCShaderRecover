@@ -29,8 +29,8 @@ void CodePages::ShowPage()
         }
         if(ImGui::BeginMenu("View Mode"))
         {
-            if(ImGui::MenuItem(sideMode ? R"(√ Sync View)" : "Sync View", "Shift+Alt+v")){layoutType = Side;}
-            if(ImGui::MenuItem(sideMode ? "Single View" : R"(√ Single View)", "Shift+Alt+f")){layoutType = FullScreen;}
+            if(ImGui::MenuItem(sideMode ? "** Sync View **" : "Sync View", "Shift+Alt+v")){layoutType = Side;}
+            if(ImGui::MenuItem(sideMode ? "Single View" : "** Single View **", "Shift+Alt+f")){layoutType = FullScreen;}
             ImGui::EndMenu();
         }
         ImGui::EndMenuBar();

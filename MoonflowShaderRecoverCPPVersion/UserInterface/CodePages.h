@@ -11,7 +11,11 @@ public:
         FullScreen,
         Side,
     };
-    
+    enum TextCodeType
+    {
+        Vertex,
+        Fragment
+    };
     static std::string SourceCodeV;
     static std::string SourceCodeP;
     bool isActive = true;
@@ -21,4 +25,5 @@ private:
     CodePageLayoutType layoutType;
     ImVec2 size = {600, 400};
     bool isInit = false;
+    void ReadSourceText(TextCodeType type);
 };
