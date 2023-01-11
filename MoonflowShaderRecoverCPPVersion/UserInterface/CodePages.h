@@ -2,6 +2,16 @@
 #include <string>
 
 #include "../imgui/imgui.h"
+// #include <commdlg.h>
+// #include <fileapi.h>
+// #include <iostream>
+// #include <minwinbase.h>
+// #include <winnt.h>
+
+#include "../imgui/imgui_impl_win32.h"
+#include "../imgui/imgui_impl_dx11.h"
+#include "../imgui/imgui_internal.h"
+#include "../d3d/ImGuiD3DHelper.h"
 
 class CodePages
 {
@@ -25,6 +35,8 @@ private:
     CodePageLayoutType layoutType;
     ImVec2 size = {600, 400};
     bool isInit = false;
+    std::string sourceShow;
+    std::string resultShow;
     void ReadSourceText(TextCodeType type);
-    void ReadFile();
+    std::string ReadFile();
 };
