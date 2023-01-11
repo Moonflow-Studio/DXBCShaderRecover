@@ -26,4 +26,5 @@ private:
     ImVec2 size = {600, 400};
     bool isInit = false;
     void ReadSourceText(TextCodeType type);
+    void ReadFile();
 };
