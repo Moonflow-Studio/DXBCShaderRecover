@@ -13,6 +13,8 @@
 #include "../imgui/imgui_internal.h"
 #include "../d3d/ImGuiD3DHelper.h"
 
+
+
 class CodePages
 {
 public:
@@ -26,17 +28,25 @@ public:
         Vertex,
         Fragment
     };
-    static std::string SourceCodeV;
-    static std::string SourceCodeP;
-    bool isActive = true;
-    void ShowPage();
+
+    bool is_active = true;
+    
+    void show_page();
+    std::string source_code_v;
+    std::string source_code_p;
+    std::string result_code_v;
+    std::string result_code_p;
 
 private:
-    CodePageLayoutType layoutType;
-    ImVec2 size = {600, 400};
-    bool isInit = false;
-    std::string sourceShow;
-    std::string resultShow;
-    void ReadSourceText(TextCodeType type);
-    std::string ReadFile();
+    CodePageLayoutType layout_type_ = FullScreen;
+    ImVec2 size_ = {600, 400};
+    bool is_init_ = false;
+    std::string* source_show_ = nullptr;
+    std::string* result_show_ = nullptr;
+    static void read_source_text(TextCodeType type);
+    static std::string read_file(bool);
+
+    void (CodePages::*single_text_area)() = nullptr;
+    void result_text_area();
+    void source_text_area();
 };

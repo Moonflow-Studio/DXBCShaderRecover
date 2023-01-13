@@ -64,9 +64,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         ImGui::NewFrame();
         
         // Any application code here
-        if(code_pages.isActive)
+        if(code_pages.is_active)
         {
-            code_pages.ShowPage();
+            code_pages.show_page();
         }
         
         // End of frame: render Dear ImGui
