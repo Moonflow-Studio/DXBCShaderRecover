@@ -36,7 +36,6 @@ void CodePages::show_page()
     }
     
     bool sideMode = layout_type_ == Side;
-    
     //Set Menu
     if(ImGui::BeginMenuBar())
     {
@@ -69,24 +68,24 @@ void CodePages::show_page()
         if(ImGui::TabItemButton(sideMode ? "Vertex" : "Source Vertex"))
         {
             source_show_ = &source_code_v;
-            // single_text_area = source_text_area;
+            selection_result = false;
         }
         if(ImGui::TabItemButton(sideMode ? "Fragment" : "Source Fragment"))
         {
             source_show_ = &source_code_p;
-            // single_text_area = source_text_area;
+            selection_result = false;
         }
         if(!sideMode)
         {
             if(ImGui::TabItemButton("Result Vertex"))
             {
                 result_show_ = &result_code_v;
-                // single_text_area = result_text_area;
+                selection_result = true;
             }
             if(ImGui::TabItemButton("Result Fragment"))
             {
                 result_show_ = &result_code_p;
-                // single_text_area = result_text_area;
+                selection_result = true;
             }
         }
         ImGui::EndTabBar();
@@ -95,14 +94,21 @@ void CodePages::show_page()
     if(sideMode)
     {
         ImGui::Columns(2);
-        result_text_area();
         source_text_area();
+        ImGui::NextColumn();
+        result_text_area();
         ImGui::EndColumns();
     }
     else
     {
-        // if(single_text_area!=nullptr)
-            // single_text_area();
+        if(!selection_result)
+        {
+            source_text_area();
+        }
+        else
+        {
+            result_text_area();
+        }
     }
     
     ImGui::End();
