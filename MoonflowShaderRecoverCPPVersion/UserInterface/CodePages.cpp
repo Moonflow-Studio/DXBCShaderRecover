@@ -1,6 +1,7 @@
 #include "CodePages.h"
 
 #include <fstream>
+#include <iostream>
 
 
 void CodePages::result_text_area()
@@ -128,56 +129,62 @@ void CodePages::read_source_text(TextCodeType type)
 
 std::string CodePages::read_file(bool test)
 {
-     OPENFILENAME ofn = { 0 };       // common dialog box structure
-     WCHAR szFile[260];       // buffer for file name 
-     HWND hwnd;              // owner window
-     HANDLE hf;              // file handle
+    OPENFILENAME ofn = { 0 };       // common dialog box structure
+    WCHAR szFile[260];       // buffer for file name 
+    HWND hwnd;              // owner window
+    HANDLE hf;              // file handle
 
-     // Initialize OPENFILENAME
-     ZeroMemory(&ofn, sizeof(ofn));
-     ofn.lStructSize = sizeof(ofn);
-     ofn.hwndOwner = nullptr;
-     ofn.lpstrFile = szFile;
-     // Set lpstrFile[0] to '\0' so that GetOpenFileName does not 
-     // use the contents of szFile to initialize itself.
-     ofn.lpstrFile[0] = '\0';
-     ofn.nMaxFile = sizeof(szFile);
-     ofn.lpstrFilter = LPCWSTR("All\0*.*\0Text\0*.TXT\0");
-     ofn.nFilterIndex = 1;
-     ofn.lpstrFileTitle = NULL;
-     ofn.nMaxFileTitle = 0;
-     ofn.lpstrInitialDir = NULL;
-     ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
+    // Initialize OPENFILENAME
+    ZeroMemory(&ofn, sizeof(ofn));
+    ofn.lStructSize = sizeof(ofn);
+    ofn.hwndOwner = nullptr;
+    ofn.lpstrFile = szFile;
+    // Set lpstrFile[0] to '\0' so that GetOpenFileName does not 
+    // use the contents of szFile to initialize itself.
+    ofn.lpstrFile[0] = '\0';
+    ofn.nMaxFile = sizeof(szFile);
+    ofn.lpstrFilter = reinterpret_cast<LPCWSTR>("All\0*.*\0Text\0*.TXT\0");
+    ofn.nFilterIndex = 1;
+    ofn.lpstrFileTitle = NULL;
+    ofn.nMaxFileTitle = 0;
+    ofn.lpstrInitialDir = NULL;
+    ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
 
-     // Display the Open dialog box. 
+    // Display the Open dialog box. 
 
-     if (GetOpenFileName(&ofn)==true) 
-         hf = CreateFile(ofn.lpstrFile, 
-                         GENERIC_READ,
-                         0,
-                         (LPSECURITY_ATTRIBUTES) NULL,
-                         OPEN_EXISTING,
-                         FILE_ATTRIBUTE_NORMAL,
-                         (HANDLE) NULL);
+    if (GetOpenFileName(&ofn)==true)
+    {
+         //这里操作可能会占用文件导致后面ifstream无法open
+    }
+    
+    try
+    {
+        std::string data;
+        std::string onfind;
+        std::ifstream infile;
 
-     // std::ifstream infile;
-     // try
-     // {
-     //     std::string data;
-     //     char onfind;
-     //     infile.open(ofn.lpstrFile);
-     //     while(infile.eof())
-     //     {
-     //         infile >> onfind;
-     //         data.append(&onfind);
-     //     }
-     //     infile.close();
-     //     return data;
-     // }
-     // catch (...)
-     // {
-     //    return "have something wrong opening file";
-     // }
+        infile.open(szFile, std::ios::in);
+        if(!infile.is_open())
+        {
+            std::cout<<"fail read data"<<std::endl;
+        }
+        else
+        {
+            while(std::getline(infile, onfind))
+            {
+                // infile>>data;
+                std::cout<<onfind<<std::endl;
+                data.append(onfind + '\n');
+            }
+        }
+        infile.close();
+        
+        return data;
+    }
+    catch (...)
+    {
+        return "have something wrong opening file";
+    }
     
      return test ? "test source Vertex" : "test source Fragment";
 }
