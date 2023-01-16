@@ -5,3 +5,5 @@
 #include "imgui/imgui_impl_dx11.h"
 #include "d3d/ImGuiD3DHelper.h"
 #include "UserInterface/CodePages.h"
+#include "UserInterface/IODataPage.h"
+#include "Data/Variables.h"

@@ -143,6 +143,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow, WNDCLASSEXW& wc)
         return 1;
     }
 
+    Variables::shader_data = new Variables::ShaderData();
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
 
@@ -231,6 +232,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         ImGui::DestroyContext();
         CleanupDeviceD3D();
         PostQuitMessage(0);
+        delete Variables::shader_data;
         break;
     default:
         return DefWindowProc(hWnd, message, wParam, lParam);

@@ -136,6 +136,7 @@
     <ClInclude Include="API\GLFW\include\GLFW\glfw3.h" />
     <ClInclude Include="API\GLFW\include\GLFW\glfw3native.h" />
     <ClInclude Include="D3D\ImGuiD3DHelper.h" />
+    <ClInclude Include="Data\Variables.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="imgui\imconfig.h" />
     <ClInclude Include="imgui\imgui.h" />
@@ -149,6 +150,7 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="UserInterface\CodePages.h" />
+    <ClInclude Include="UserInterface\IODataPage.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="D3D\ImGuiD3DHelper.cpp">
@@ -224,6 +226,7 @@
       <SDLCheck>true</SDLCheck>
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
+    <ClCompile Include="Data\Variables.cpp" />
     <ClCompile Include="imgui\imgui.cpp" />
     <ClCompile Include="imgui\imgui_demo.cpp" />
     <ClCompile Include="imgui\imgui_draw.cpp" />
@@ -233,6 +236,7 @@
     <ClCompile Include="imgui\imgui_widgets.cpp" />
     <ClCompile Include="MoonflowShaderRecoverCPPVersion.cpp" />
     <ClCompile Include="UserInterface\CodePages.cpp" />
+    <ClCompile Include="UserInterface\IODataPage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="MoonflowShaderRecoverCPPVersion.rc" />
